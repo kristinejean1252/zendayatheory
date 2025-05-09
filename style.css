@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.background {
+	height: 100vh;
+	width: 100vw;
+	background: url('granny.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.bird {
+	height: 100px;
+	width: 130px;
+	position: fixed;
+	top: 40vh;
+	left: 30vw;
+	z-index: 100;
+}
+.pipe_sprite {
+	position: fixed;
+	top: 40vh;
+	left: 100vw;
+	height: 70vh;
+	width: 6vw;
+	background:radial-gradient(rgba(165, 7, 7, 0.675) 50%, rgb(60, 1, 1));
+	border: 5px solid black;
+}
+.message {
+	position: absolute;
+	z-index: 10;
+	color: black;
+	top: 30%;
+	left: 50%;
+	font-size: 4em;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+.messageStyle{
+	background: white;
+	padding: 30px;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	border-radius: 5%;
+}
+.score {
+	position: fixed;
+	z-index: 10;
+	height: 10vh;
+	font-size: 10vh;
+	font-weight: 100;
+	color: white;
+	-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(13, 1, 1);
+	top: 0;
+	left: 0;
+	margin: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.score_val {
+	color: rgb(115, 6, 6);
+	font-weight: bold;
+}
+@media only screen and (max-width: 1080px) {
+    .message{
+		font-size: 50px;
+		top: 50%;
+		white-space: nowrap;
+	}
+	.score{
+		font-size: 8vh;
+	}
+	.bird{
+		width: 120px;
+		height: 90px;
+	}
+	.pipe_sprite{
+		width: 14vw;
+	}
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: #fff;
+    padding: 40px 30px 30px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    text-align: center;
+    min-width: 300px;
+}
+#player-name {
+    padding: 10px;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+#start-game-btn {
+    padding: 10px 30px;
+    font-size: 1.1em;
+    background: #a50707;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+#start-game-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+#leaderboard-list {
+    text-align: left;
+    margin: 0 auto;
+    max-width: 250px;
+    padding-left: 20px;
+    font-size: 1.1em;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+#leaderboard-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    font-family: 'Creepster', Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    text-shadow: 0 0 5px #a50707;
+}
+
+#leaderboard-list li:last-child {
+    border-bottom: none;
+}
+
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+.welcome-content {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.welcome-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.7;
+}
+.welcome-title {
+    position: relative;
+    z-index: 2;
+    font-size: 4em;
+    color: #fff;
+    text-shadow: 0 0 20px #a50707, 0 0 10px #000;
+    font-family: 'Creepster', Arial, Helvetica, sans-serif;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.button-group {
+    position: absolute;
+    right: 5vw;
+    bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    z-index: 2;
+}
+.start-btn, .leaderboard-btn {
+    font-family: 'Creepster', Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    color: #fff;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    text-shadow: 0 0 10px #000, 0 0 4px #fff, 0 0 20px #a50707;
+    transition: color 0.2s, background 0.2s;
+    padding: 18px 60px;
+    opacity: 0.9;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+.start-btn:hover, .leaderboard-btn:hover {
+    color: #a50707;
+    background: rgba(255,255,255,0.05);
+    opacity: 1;
+}
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    background: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 2em;
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+}
+.music-btn:hover {
+    background: rgba(165,7,7,0.15);
+    color: #a50707;
+    opacity: 1;
+}
+.music-btn.muted {
+    color: #666;
+}
+.leaderboard-modal-content {
+    min-width: 350px;
+    min-height: 250px;
+    background: #181818;
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    padding: 30px;
+}
+#leaderboard-modal h3 {
+    font-family: 'Creepster', Arial, Helvetica, sans-serif;
+    font-size: 2.5em;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #a50707, 0 0 4px #fff;
+    text-align: center;
+}
+#close-leaderboard-btn {
+    margin-top: 20px;
+    background: #a50707;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background 0.2s;
+}
+#close-leaderboard-btn:hover {
+    background: #8a0606;
+}
+.player-name-display {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Creepster', Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    color: #fff;
+    text-shadow: 0 0 10px #a50707, 0 0 4px #fff, 0 0 20px #a50707;
+    z-index: 1000;
+    opacity: 0.9;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    display: none;
+    text-align: center;
+    min-width: 200px;
+}
+
+@media only screen and (max-width: 1080px) {
+    .player-name-display {
+        font-size: 1.5em;
+        top: 10px;
+        min-width: 150px;
+    }
+    .message{
+		font-size: 50px;
+		top: 50%;
+		white-space: nowrap;
+	}
+	.score{
+		font-size: 8vh;
+	}
+	.bird{
+		width: 120px;
+		height: 90px;
+	}
+	.pipe_sprite{
+		width: 14vw;
+	}
+    .music-btn {
+        font-size: 1.5em;
+        width: 48px;
+        height: 48px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+.game-over-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.game-over-content {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-over-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.9;
+    filter: brightness(0.8) contrast(1.2);
+}
+
+.restart-btn {
+    position: absolute;
+    bottom: 10vh;
+    font-family: 'Creepster', Arial, Helvetica, sans-serif;
+    font-size: 2.5em;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #a50707;
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 0 0 10px #000, 0 0 4px #fff, 0 0 20px #a50707;
+    transition: all 0.3s ease;
+    padding: 20px 80px;
+    opacity: 0.9;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(165, 7, 7, 0.3);
+}
+
+.restart-btn:hover {
+    color: #a50707;
+    background: rgba(255,255,255,0.1);
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(165, 7, 7, 0.5);
+}
+
+@media only screen and (max-width: 1080px) {
+    .restart-btn {
+        font-size: 2em;
+        padding: 15px 60px;
+        bottom: 5vh;
+    }
+    .player-name-display {
+        font-size: 1.5em;
+        top: 10px;
+        min-width: 150px;
+    }
+    .message{
+		font-size: 50px;
+		top: 50%;
+		white-space: nowrap;
+	}
+	.score{
+		font-size: 8vh;
+	}
+	.bird{
+		width: 120px;
+		height: 90px;
+	}
+	.pipe_sprite{
+		width: 14vw;
+	}
+    .music-btn {
+        font-size: 1.5em;
+        width: 48px;
+        height: 48px;
+        top: 10px;
+        right: 10px;
+    }
+}

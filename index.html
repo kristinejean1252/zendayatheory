@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/favicon.ico"/>
+    <title>The Zendaya Theory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
+            <img src="zendaya_theory.gif" alt="The Zendaya Theory" class="welcome-bg" />
+            <div class="button-group">
+                <button id="open-name-modal-btn" class="start-btn">Start</button>
+            </div>
+        </div>
+    </div>
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <input type="text" id="player-name" placeholder="Enter your name" maxlength="12" />
+            <button id="start-game-btn" class="start-btn">Start Game</button>
+            <button id="open-leaderboard-btn" class="leaderboard-btn">Leaderboard</button>
+        </div>
+    </div>
+    <div class="background"></div>
+    <img src="zendaya1.png" alt="bird-img" class="bird" id="bird-1">
+    <div class="message">
+        Enter To Start Game <p><span style="color: red;">&uarr;</span> ArrowUp to Control</p>
+    </div>
+    <div class="score">
+        <span class="score_title"></span>
+        <span class="score_val"></span>
+    </div>
+    <div id="player-name-display" class="player-name-display"></div>
+    <button id="music-btn" class="music-btn">🔊</button>
+    <div id="leaderboard-modal" class="modal">
+        <div class="modal-content leaderboard-modal-content">
+            <h3>Leaderboard</h3>
+            <ul id="leaderboard-list"></ul>
+            <button id="close-leaderboard-btn" class="start-btn">Close</button>
+        </div>
+    </div>
+    <div id="game-over-screen" class="game-over-screen">
+        <div class="game-over-content">
+            <img src="boo.gif" alt="Game Over" class="game-over-bg" />
+            <button id="restart-btn" class="restart-btn">Restart</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
